@@ -1,0 +1,7 @@
+---
+- name: Configuracao do ambiente
+  sudo: yes
+  hosts: ubuntu
+
+  roles:
+    - nginx  

@@ -1,0 +1,47 @@
+---
+#DA PARA MELHORAR COM ALGUM COMANDO QUE AICIONE A CHAVE E EDITE A SOURCE LIST 
+- name: Instalar o nginx
+  apt: name=nginx update_cache=yes
+
+- name: habilitar o nginx como um servico 
+  service: name=nginx enabled=yes
+
+- name: Inicializar o nginx
+  service: name=nginx state=started
+
+- name: Copia o arqivo de definicao de diretorio
+  template: >
+    src=default
+    dest=/etc/nginx/sites-available/default
+
+- name: reiniciar nginx para recarregar o novo arquivo
+  service: name=nginx state=restarted
+
+#ARRUMAR NÃO SEI ONDE ALTERA O USUARIO WWW-DATA PARA NGINX
+#- name: Cria usuario de controle de alicacao para o nginx
+#  user: name=nginx group=nginx comment="Usuario de aplicacao e deploy" state=present
+
+- name: Cria o diretório da aplicacao
+  file: >
+    dest=/var/www/gestor
+    state=directory
+ #   recurse=yes
+ #   owner=nginx
+ #   group=nginx
+ #   mode=775 
+
+- name: Cria um arquivo de teste php
+  template: > 
+    src=index.php
+    dest=/var/www/gestor
+    owner=root
+    group=root
+    mode=644
+
+- name: Cria um arquivo de test html
+  template: >
+    src=index.html
+    dest=/var/www/gestor
+    owner=root
+    group=root
+    mode=644
