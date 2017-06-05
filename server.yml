@@ -1,7 +1,8 @@
 ---
 - name: Configuracao do ambiente
-  sudo: yes
+  become: yes
   hosts: ubuntu
 
   roles:
     - nginx  
+    - php
