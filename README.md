@@ -9,7 +9,7 @@ Instruçoes de instalação para NGINX - PHP 7 - MYSQL.
   A pasta task contem o arquivo main.yml que nada mais é a instrução de instalação e configuração.<br>
   A pasta template contem os arquivos de configuração a serem copiados para o servidor remoto.
  
-* O arquivo server.yml contem a referência das tarefas que estão dentro da pasta roles e onde referêcia um grupo do inventário para executar as tasks.
+* O arquivo server.yml contem a referência das tarefas que estão dentro da pasta roles e onde referência um grupo do inventário para executar as tasks.
 
 O comando a ser executado é:
 
