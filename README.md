@@ -13,4 +13,5 @@ Instruçoes de instalação para NGINX - PHP 7 - MYSQL.
 
 O comando a ser executado é:
 
-ansible-playbook -i inventario server.yml
+```sh $ ansible-playbook -i inventario server.yml
+```
