@@ -1,0 +1,13 @@
+- name: Clona o WAF
+  git: repo=https://github.com/CoolerVoid/raptor_waf.git
+       dest=/etc/raptor/
+       force=yes
+ 
+- name: Checa se ja existe o make do WAF
+  stat:
+    path: /etc/raptor/bin/Raptor
+  register: stat_result
+
+- name: Cria o executavel caso não exista
+  shell: cd /etc/raptor; make; bin/Raptor 
+  when: stat_result.stat.exists == False 
