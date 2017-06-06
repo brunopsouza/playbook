@@ -1,4 +1,4 @@
-#Porta de estusa e servior padrão
+#Porta de estusa e servior padro
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -10,21 +10,21 @@ server {
 #Define localhost ou dominio
         server_name _;
 
-#pagina de erro 404
         location / {
-                try_files $uri $uri/ =404;
-        }
-        
+        try_files $uri/ =404;
+}
+
+
 #PHP scrit para fast CGI
-        location ~\ .php$ {
+        location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        
-        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+
 
 #negar acesso aos arquivos .htacess
         location ~ /\.ht {
-         deny all;
-         
+        deny all;
+
   }
  }
 }

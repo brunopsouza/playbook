@@ -1,0 +1,30 @@
+#Porta de estusa e servior padrão
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+#Caminho da aplicacao e paginas iniciais
+        root /var/www/gestor;
+        index index.html index.htm index.php;
+
+#Define localhost ou dominio
+        server_name _;
+
+#pagina de erro 404
+        location / {
+                try_files $uri $uri/ =404;
+        }
+        
+#PHP scrit para fast CGI
+        location ~\ .php$ {
+        include snippets/fastcgi-php.conf;
+        
+        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+
+#negar acesso aos arquivos .htacess
+        location ~ /\.ht {
+         deny all;
+         
+  }
+ }
+}
