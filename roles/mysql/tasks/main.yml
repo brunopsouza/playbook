@@ -1,0 +1,26 @@
+- name: Install MySQL
+  apt: pkg={{item}} state=installed
+  with_items:
+    - bundler
+    - mysql-server-core-5.5
+    - mysql-client-core-5.5
+    - libmysqlclient-dev
+    - python-mysqldb
+    - mysql-server
+    - mysql-client
+    - build-essential
+
+- name: Remove o data base de teste
+    action: mysql_db db=test state=absent
+
+- name: Cria o my.cnf
+    template: src=etc.my.cnf dest=/etc/mysql/my.cnf
+
+- name: Cria os DB
+    mysql_db: name={{item}} state=present collation=utf8_general_ci encoding=utf8
+    with_items:
+      - Prod
+      - Hml
+
+- name: Reiniciar o serviço
+  action: service name=mysql state=restarted enabled=true
